@@ -31,127 +31,359 @@
             </div>
 
             <h3 class="mt-4">Feedback Questions</h3>
-            <table class="table table-bordered text-center">
-                <thead>
-                    <tr>
-                        <th>Question</th>
-                        <th>Strongly Agree</th>
-                        <th>Agree</th>
-                        <th>Neutral</th>
-                        <th>Disagree</th>
-                        <th>Strongly Disagree</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Ticket Counter team provided excellent support and assistance.</td>
-                        <td>{{ form.ticket_support_strongly_agree }}</td>
-                        <td>{{ form.ticket_support_agree }}</td>
-                        <td>{{ form.ticket_support_neutral }}</td>
-                        <td>{{ form.ticket_support_disagree }}</td>
-                        <td>{{ form.ticket_support_strongly_disagree }}</td>
-                    </tr>
+            <form mrthod="post">
+                {% csrf_token %}
+                <table class="table table-bordered text-center">
+                    <thead>
+                        <tr>
+                            <th>Question</th>
+                            <th>Strongly Agree</th>
+                            <th>Agree</th>
+                            <th>Neutral</th>
+                            <th>Disagree</th>
+                            <th>Strongly Disagree</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Ticket Counter team provided excellent support and assistance.</td>
+                            <td>
+                                <input type="radio" name="ticket_support" value="strongly_agree" 
+                                    {% if form.ticket_support.value == "strongly_agree" %}checked{% endif %}>
+                            </td>
+                            <td>
+                                <input type="radio" name="ticket_support" value="agree" 
+                                    {% if form.ticket_support.value == "agree" %}checked{% endif %}>
+                            </td>
+                            <td>
+                                <input type="radio" name="ticket_support" value="neutral" 
+                                    {% if form.ticket_support.value == "neutral" %}checked{% endif %}>
+                            </td>
+                            <td>
+                                <input type="radio" name="ticket_support" value="disagree" 
+                                    {% if form.ticket_support.value == "disagree" %}checked{% endif %}>
+                            </td>
+                            <td>
+                                <input type="radio" name="ticket_support" value="strongly_disagree" 
+                                    {% if form.ticket_support.value == "strongly_disagree" %}checked{% endif %}>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="6" class="text-danger">
+                                {{ form.ticket_support.errors }}
+                            </td>
+                        </tr>            
                     
-                   
-                    <tr>
-                        <td>IT team provided excellent support and assistance.</td>
-                        <td>{{ form.it_support_strongly_agree }}</td>
-                        <td>{{ form.it_support_agree }}</td>
-                        <td>{{ form.it_support_neutral }}</td>
-                        <td>{{ form.it_support_disagree }}</td>
-                        <td>{{ form.it_support_strongly_disagree }}</td>
-                    </tr>
+                    
+                        <tr>
+                            <td>IT team provided excellent support and assistance.</td>
+                            <td>
+                                <input type="radio" name="it_support" value="strongly_agree" 
+                                    {% if form.it_support.value == "strongly_agree" %}checked{% endif %}>
+                            </td>
+                            <td>
+                                <input type="radio" name="it_support" value="agree" 
+                                    {% if form.it_support.value == "agree" %}checked{% endif %}>
+                            </td>
+                            <td>
+                                <input type="radio" name="it_support" value="neutral" 
+                                    {% if form.it_support.value == "neutral" %}checked{% endif %}>
+                            </td>
+                            <td>
+                                <input type="radio" name="it_support" value="disagree" 
+                                    {% if form.it_support.value == "disagree" %}checked{% endif %}>
+                            </td>
+                            <td>
+                                <input type="radio" name="it_support" value="strongly_disagree" 
+                                    {% if form.it_support.value == "strongly_disagree" %}checked{% endif %}>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="6" class="text-danger">
+                                {{ form.it_support.errors }}
+                            </td>
+                        </tr>
 
-                    <tr>
-                        <td>The security team provides excellent support and assistance.</td>
-                        <td>{{ form.security_team_strongly_agree }}</td>
-                        <td>{{ form.security_team_agree }}</td>
-                        <td>{{ form.security_team_neutral }}</td>
-                        <td>{{ form.security_team_disagree }}</td>
-                        <td>{{ form.security_team_strongly_disagree }}</td>
-                    </tr>
+                        <tr>
+                            <td>The security team provided excellence support and assistance</td>
+                            <td>
+                                <input type="radio" name="security" value="strongly_agree"
+                                    {% if form.security.value == "strongly_agree" %}checked{% endif %}>
+                            </td>
+                            <td>
+                                <input type="radio" name="security" value="agree"
+                                    {% if form.security.value == "agree" %}checked{% endif %}>
+                            </td>
+                            <td>
+                                <input type="radio" name="security" value="neutral"
+                                    {% if form.security.value == "neutral" %}checked{% endif %}>
+                            </td>
+                            <td>
+                                <input type="radio" name="security" value="disagree"
+                                    {% if form.security.value == "disagree" %}checked{% endif %}>
+                            </td>
+                            <td>
+                                <input type="radio" name="security" value="strongly_disagree"
+                                    {% if form.security.value == "strongly_disagree" %}checked{% endif %}>
+                            </td>
+                        </tr>
 
-                    <tr>
-                        <td>The housekeeping team maintained the premises in an exceptionally clean condition</td>
-                        <td>{{ form.house_keeping_strongly_agree }}</td>
-                        <td>{{ form.house_keeping_agree }}</td>
-                        <td>{{ form.house_keeping_neutral }}</td>
-                        <td>{{ form.house_keeping_disagree }}</td>
-                        <td>{{ form.house_keeping_strongly_disagree }}</td>
-                    </tr>
+                        <tr>
+                            <td colspan="6" class="text-danger">
+                                {{ form.security.errors }}
+                            </td>
+                        </tr>
 
-                    <tr>
-                        <td>The facilitators were welcoming and provided outstanding guidance, leaving us completely satisfied.</td>
-                        <td>{{ facilitators_strongly_agree }}</td>
-                        <td>{{ facilitators_agree }}</td>
-                        <td>{{ facilitators_neutral }}</td>
-                        <td>{{ facilitators_disagree }}</td>
-                        <td>{{ facilitators_strongly_disagree }}</td>
-                    </tr>
+                        <tr>
+                            <td>The housekeeping team maintained the premises in an exceptionally clean condition</td>
+                            <td>
+                                <input type="radio" name="housekeeping" value="strongly_agree"
+                                    {% if form.housekeeping.value == "strongly_agree" %}checked{% endif %}>
+                            </td>
+                            <td>
+                                <input type="radio" name="housekeeping" value="agree"
+                                    {% if form.housekeeping.value == "agree" %}checked{% endif %}>
+                            </td>
+                            <td>
+                                <input type="radio" name="housekeeping" value="neutral"
+                                    {% if form.housekeeping.value == "neutral" %}checked{% endif %}>
+                            </td>
+                            <td>
+                                <input type="radio" name="housekeeping" value="disagree"
+                                    {% if form.housekeeping.value == "disagree" %}checked{% endif %}>
+                            </td>
+                            <td>
+                                <input type="radio" name="housekeeping" value="strongly_disagree"
+                                    {% if form.housekeeping.value == "strongly_disagree" %}checked{% endif %}>
+                            </td>
+                        </tr>
 
-                    <tr>
-                        <td>The Archakas guided us expertly, leading us in chanting mantras at the 108 Divyadesams and Swarna Ramanuja.</td>
-                        <td>{{ form.archakas_strongly_agree }}</td>
-                        <td>{{ form.archakas_agree }}</td>
-                        <td>{{ form.archakas_neutral }}</td>
-                        <td>{{ form.archakas_disagree }}</td>
-                        <td>{{ form.archakas_strongly_disagree }}</td>
-                    </tr>
+                        <tr>
+                            <td colspan="6" class="text-danger">
+                                {{ form.housekeeping.errors }}
+                            </td>
+                        </tr>
 
-                    <tr>
-                        <td>I felt a deep sense of devotion at the 108 Divyadesams and a truly fulfilling experience.</td>
-                        <td>{{ form.devotion_strongly_agree }}</td>
-                        <td>{{ form.devotion_agree }}</td>
-                        <td>{{ form.devotion_neutral }}</td>
-                        <td>{{ form.devotion_disagree }}</td>
-                        <td>{{ form.devotion_strongly_disagree }}</td>
-                    </tr>
+                        <tr>
+                            <td>The facilitators were welcoming and provided outstanding guidance, leaving us completely satisfied.</td>
+                            <td>
+                                <input type="radio" name="facilitators" value="strongly_agree"
+                                    {% if form.facilitators.value == "strongly_agree" %}checked{% endif %}>
+                            </td>
+                            <td>
+                                <input type="radio" name="facilitators" value="agree"
+                                    {% if form.facilitators.value == "agree" %}checked{% endif %}>
+                            </td>
+                            <td>
+                                <input type="radio" name="facilitators" value="neutral"
+                                    {% if form.facilitators.value == "neutral" %}checked{% endif %}>
+                            </td>
+                            <td>
+                                <input type="radio" name="facilitators" value="disagree"
+                                    {% if form.facilitators.value == "disagree" %}checked{% endif %}>
+                            </td>
+                            <td>
+                                <input type="radio" name="facilitators" value="strongly_disagree"
+                                    {% if form.facilitators.value == "strongly_disagree" %}checked{% endif %}>
+                            </td>
+                        </tr>
 
-                    <tr>
-                        <td>I thoroughly enjoyed watching the 'Samatha Neerajanam (Harathi)' - it was truly spectacular.</td>
-                        <td>{{ form.harathi_strongly_agree }}</td>
-                        <td>{{ form.harathi_agree }}</td>
-                        <td>{{ form.harathi_neutral }}</td>
-                        <td>{{ form.harathi_disagree }}</td>
-                        <td>{{ form.harathi_strongly_disagree }}</td>
-                    </tr>
+                        <tr>
+                            <td colspan="6" class="text-danger">
+                                {{ form.facilitators.errors }}
+                            </td>
+                        </tr>
 
-                    <tr>
-                        <td>The fountain and laser show were amazing, atruly breathtaking experiencefor my eyes.</td>
-                        <td>{{ form.fountain_strongly_agree }}</td>
-                        <td>{{ form.fountain_agree }}</td>
-                        <td>{{ form.fountain_neutral }}</td>
-                        <td>{{ form.fountain_disagree }}</td>
-                        <td>{{ form.fountain_strongly_disagree }}</td>
-                    </tr>
+                        <tr>
+                            <td>The Archakas guided us expertly, leading us in chanting mantras at the 108 Divyadesams and Swarna Ramanuja.</td>
+                            <td>
+                                <input type="radio" name="archakas" value="strongly_agree"
+                                    {% if form.archakas.value == "strongly_agree" %}checked{% endif %}>
+                            </td>
+                            <td>
+                                <input type="radio" name="archakas" value="agree"
+                                    {% if form.archakas.value == "agree" %}checked{% endif %}>
+                            </td>
+                            <td>
+                                <input type="radio" name="archakas" value="neutral"
+                                    {% if form.archakas.value == "neutral" %}checked{% endif %}>
+                            </td>
+                            <td>
+                                <input type="radio" name="archakas" value="disagree"
+                                    {% if form.archakas.value == "disagree" %}checked{% endif %}>
+                            </td>
+                            <td>
+                                <input type="radio" name="archakas" value="strongly_disagree"
+                                    {% if form.archakas.value == "strongly_disagree" %}checked{% endif %}>
+                            </td>
+                        </tr>
 
-                    <tr>
-                        <td>The prasadam is not only delicious and flavorful but also hygienic for my eyes.</td>
-                        <td>{{ form.prasadam_strongly_agree }}</td>
-                        <td>{{ form.prasadam_agree }}</td>
-                        <td>{{ form.prasadam_neutral }}</td>
-                        <td>{{ form.prasadam_disagree }}</td>
-                        <td>{{ form.prasadam_strongly_disagree }}</td>
-                    </tr>
+                        <tr>
+                            <td colspan="6" class="text-danger">
+                                {{ form.archakas.errors }}
+                            </td>
+                        </tr>
 
-                    <tr>
-                        <td>I would love to visit the Statue of Equality repeatedly.</td>
-                        <td>{{ form.visit_strongly_agree }}</td>
-                        <td>{{ form.visit_agree }}</td>
-                        <td>{{ form.visit_neutral }}</td>
-                        <td>{{ form.visit_disagree }}</td>
-                        <td>{{ form.visit_strongly_disagree }}</td>
-                    </tr>
+                        <tr>
+                            <td>I felt a deep sense of devotion at the 108 Divyadesams and a truly fulfilling experience.</td>
+                            <td>
+                                <input type="radio" name="devotion" value="strongly_agree"
+                                    {% if form.devotion.value == "strongly_agree" %}checked{% endif %}>
+                            </td>
+                            <td>
+                                <input type="radio" name="devotion" value="agree"
+                                    {% if form.devotion.value == "agree" %}checked{% endif %}>
+                            </td>
+                            <td>
+                                <input type="radio" name="devotion" value="neutral"
+                                    {% if form.devotion.value == "neutral" %}checked{% endif %}>
+                            </td>
+                            <td>
+                                <input type="radio" name="devotion" value="disagree"
+                                    {% if form.devotion.value == "disagree" %}checked{% endif %}>
+                            </td>
+                            <td>
+                                <input type="radio" name="devotion" value="strongly_disagree"
+                                    {% if form.devotion.value == "strongly_disagree" %}checked{% endif %}>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="6" class="text-danger">
+                                {{ form.devotion.errors }}
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>I thoroughly enjoyed watching the 'Samatha Neerajanam (Harathi)' - it was truly spectacular.</td>
+                            <td>
+                                <input type="radio" name="harathi" value="strongly_agree"
+                                    {% if form.harathi.value == "strongly_agree" %}checked{% endif %}>
+                            </td>
+                            <td>
+                                <input type="radio" name="harathi" value="agree"
+                                    {% if form.harathi.value == "agree" %}checked{% endif %}>
+                            </td>
+                            <td>
+                                <input type="radio" name="harathi" value="neutral"
+                                    {% if form.harathi.value == "neutral" %}checked{% endif %}>
+                            </td>
+                            <td>
+                                <input type="radio" name="harathi" value="disagree"
+                                    {% if form.harathi.value == "disagree" %}checked{% endif %}>
+                            </td>
+                            <td>
+                                <input type="radio" name="harathi" value="strongly_disagree"
+                                    {% if form.harathi.value == "strongly_disagree" %}checked{% endif %}>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="6" class="text-danger">
+                                {{ form.harathi.errors }}
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>The fountain and laser show were amazing, atruly breathtaking experiencefor my eyes.</td>
+                            <td>
+                                <input type="radio" name="fountain" value="strongly_agree"
+                                    {% if form.fountain.value == "strongly_agree" %}checked{% endif %}>
+                            </td>
+                            <td>
+                                <input type="radio" name="fountain" value="agree"
+                                    {% if form.fountain.value == "agree" %}checked{% endif %}>
+                            </td>
+                            <td>
+                                <input type="radio" name="fountain" value="neutral"
+                                    {% if form.fountain.value == "neutral" %}checked{% endif %}>
+                            </td>
+                            <td>
+                                <input type="radio" name="fountain" value="disagree"
+                                    {% if form.fountain.value == "disagree" %}checked{% endif %}>
+                            </td>
+                            <td>
+                                <input type="radio" name="fountain" value="strongly_disagree"
+                                    {% if form.fountain.value == "strongly_disagree" %}checked{% endif %}>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="6" class="text-danger">
+                                {{ form.fountain.errors }}
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>The prasadam is not only delicious and flavorful but also hygienic for my eyes.</td>
+                            <td>
+                                <input type="radio" name="prasadam" value="strongly_agree"
+                                    {% if form.prasadam.value == "strongly_agree" %}checked{% endif %}>
+                            </td>
+                            <td>
+                                <input type="radio" name="prasadam" value="agree"
+                                    {% if form.prasadam.value == "agree" %}checked{% endif %}>
+                            </td>
+                            <td>
+                                <input type="radio" name="prasadam" value="neutral"
+                                    {% if form.prasadam.value == "neutral" %}checked{% endif %}>
+                            </td>
+                            <td>
+                                <input type="radio" name="prasadam" value="disagree"
+                                    {% if form.prasadam.value == "disagree" %}checked{% endif %}>
+                            </td>
+                            <td>
+                                <input type="radio" name="prasadam" value="strongly_disagree"
+                                    {% if form.prasadam.value == "strongly_disagree" %}checked{% endif %}>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="6" class="text-danger">
+                                {{ form.prasadam.errors }}
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>I would love to visit the Statue of Equality repeatedly.</td>
+                            <td>
+                                <input type="radio" name="visit" value="strongly_agree"
+                                    {% if form.visit.value == "strongly_agree" %}checked{% endif %}>
+                            </td>
+                            <td>
+                                <input type="radio" name="visit" value="agree"
+                                    {% if form.visit.value == "agree" %}checked{% endif %}>
+                            </td>
+                            <td>
+                                <input type="radio" name="visit" value="neutral"
+                                    {% if form.visit.value == "neutral" %}checked{% endif %}>
+                            </td>
+                            <td>
+                                <input type="radio" name="visit" value="disagree"
+                                    {% if form.visit.value == "disagree" %}checked{% endif %}>
+                            </td>
+                            <td>
+                                <input type="radio" name="visit" value="strongly_disagree"
+                                    {% if form.visit.value == "strongly_disagree" %}checked{% endif %}>
+                            </td>
+                        </tr>
+                
+                        <tr>
+                            <td colspan="6" class="text-danger">
+                                {{ form.visit.errors }}
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
             
-                </tbody>
-            </table>
+                <div class="mb-3">
+                    <label for="improvement_area" class="form-label">Which areas do you believe require improvement?</label>
+                    {{ form.improvement_area }}
+                </div>
 
-            <div class="mb-3">
-                <label for="improvement_area" class="form-label">Which areas do you believe require improvement?</label>
-                {{ form.improvement_area }}
-            </div>
-
-            <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Submit Feedback</button>
+            </form>
         </form>
     </div>
 </body>

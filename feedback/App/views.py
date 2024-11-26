@@ -12,3 +12,6 @@ def feedback_form(request):
     else:
         form = FeedbackForm()
     return render(request, 'feedback_form.html', {'form': form})
+
+# def thank_you(request):
+#     return render(request, 'thank_you.html')
