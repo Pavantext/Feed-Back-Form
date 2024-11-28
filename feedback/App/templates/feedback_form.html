@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -386,5 +386,83 @@
             </form>
         </form>
     </div>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+        <h1 class="text-center mb-4">Statue of Equality Feedback Form</h1>
+    <p class="text-center">Please fill out this feedback form as you see fit to help us improve our service.</p>
+
+    <form method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+            {{ form.name.label }}
+            <!-- <label for="name" class="form-label">Name</label> -->
+            {{ form.name }}
+        </div>
+        <div class="mb-3">
+            <label for="city" class="form-label">City</label>
+            {{ form.city }}
+        </div>
+        <div class="mb-3">
+            {{ form.email.label }}
+            <!-- <label for="email" class="form-label">Email</label> -->
+            {{ form.email }}
+            {% if form.email.errors %}
+            <div class="text-danger">
+              {{ form.email.errors }}
+            </div>
+            {% endif %}
+
+        </div>
+        <div class="mb-3">
+            <label for="mobile" class="form-label">Mobile</label>
+            {{ form.mobile }}
+        </div>
+
+        <h3 class="mt-4">Feedback Questions</h3>
+        <table class="table table-bordered text-center">
+            <thead>
+                <tr>
+                    <th>Question</th>
+                    <th>Strongly Agree</th>
+                    <th>Agree</th>
+                    <th>Neutral</th>
+                    <th>Disagree</th>
+                    <th>Strongly Disagree</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for question, field in feedback_questions.items %}
+                    <tr>
+                        <td>{{ question }}</td>
+                        <td><input type="radio" name="{{ field.name }}" value="strongly_agree" {% if field.value == "strongly_agree" %}checked{% endif %}></td>
+                        <td><input type="radio" name="{{ field.name }}" value="agree" {% if field.value == "agree" %}checked{% endif %}></td>
+                        <td><input type="radio" name="{{ field.name }}" value="neutral" {% if field.value == "neutral" %}checked{% endif %}></td>
+                        <td><input type="radio" name="{{ field.name }}" value="disagree" {% if field.value == "disagree" %}checked{% endif %}></td>
+                        <td><input type="radio" name="{{ field.name }}" value="strongly_disagree" {% if field.value == "strongly_disagree" %}checked{% endif %}></td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" class="text-danger">{{ field.errors }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="mb-3">
+            <label for="improvement_areas" class="form-label">Which areas do you believe require improvement?</label>
+            {{ form.improvement_areas }}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit Feedback</button>
+    </form>
 </body>
 </html>
