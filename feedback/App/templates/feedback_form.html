@@ -49,9 +49,10 @@
                         </div>
                 </div>
                 <h3 class="mt-4">Feedback Questions</h3>
-                <table class="table table-bordered text-center">
+                <table class="table">
                     <thead>
                         <tr>
+                            <th>Sl no</th>
                             <th>Question</th>
                             <th>Strongly Agree</th>
                             <th>Agree</th>
@@ -63,6 +64,7 @@
                     <tbody>
                         {% for question, field in feedback_questions.items %}
                             <tr>
+                                <td>{{ forloop.counter }}</td>
                                 <td>{{ question }}</td>
                                 <td><input type="radio" name="{{ field.name }}" value="strongly_agree" {% if field.value == "strongly_agree" %}checked{% endif %}></td>
                                 <td><input type="radio" name="{{ field.name }}" value="agree" {% if field.value == "agree" %}checked{% endif %}></td>
@@ -76,14 +78,15 @@
                         {% endfor %}
                     </tbody>
                 </table>
-
+                <br>
                 <div class="text">
-                        <label for="improvement_areas" class="form-label">Which areas do you believe require improvement?</label>
+                        <h3><label for="improvement_areas" class="form-label">Which areas do you believe require improvement?</label></h3>
                 </div>
                 <div class="text">
                         {{ form.improvement_areas }}
                 </div>
-                    <button type="submit" class="btn btn-primary">Submit Feedback</button>
+                    <button type="submit" class="btn">Submit Feedback</button>
+                    <br>
 
             </form>
         </div>
