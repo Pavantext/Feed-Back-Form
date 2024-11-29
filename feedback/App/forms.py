@@ -6,7 +6,7 @@ class FeedbackForm(forms.ModelForm):
     class Meta:
         model = Feedback
         fields = '__all__'
-        name = forms.CharField(max_length=100, required=True)
+        name = forms.CharField(max_length=100,  required=True)
         city = forms.CharField(max_length=100, required=True)
         email = forms.EmailField(required=True)
         mobile = forms.CharField(max_length=15, required=True)
