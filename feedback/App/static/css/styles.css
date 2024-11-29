@@ -5,11 +5,11 @@
 }
 
 h4.text-center {
-    align-items: center;
+    /* align-items: center; */
     margin: 0 auto;
 }
 
-#body-div {
+.body-div {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -23,10 +23,47 @@ h4.text-center {
 }
 
 #form-container {
+    justify-content: space-around;
+    /* flex-wrap: nowrap; */
+    align-items: center;
     display: flex;
     flex-wrap: wrap;
 }
 
+.feilds {
+    justify-items: end;
+}
+
 h1.text-center.mb-4 {
     margin: revert;
+}
+
+.mb-3, #id_improvement_areas {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    padding: 10px;
+    /* border: none; */
+    /* border-bottom: 2px solid #ccc; */
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
+    width: 300px;
+    transition: border-color 0.3s ease-in-out;
+}
+
+/* .mb-3 label {
+    margin-bottom: 5px;  
+    border-color: #007bff;
+    outline: none;    
+} */
+
+#id_name, #id_city, #id_email, #id_mobile, #id_improvement_areas {
+    background-color: burlywood;
+    border-radius: inherit;
+}
+
+.text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

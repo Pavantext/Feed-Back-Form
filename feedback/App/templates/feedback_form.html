@@ -8,19 +8,21 @@
         <link href="{% static 'css/styles.css' %}" rel="stylesheet">
     </head>
     <body>
-        <div id="body-div">
+        <div class="body-div">
             <header id="header">
                 <img id="img" src="{% static 'images/Logo.png' %}" alt="Logo">
                 <h1 class="text-center mb-4">Statue of Equality Feedback Form</h1>
             </header>
             <br>
-            <h4 class="text-center">Please fill out this feedback form as you see fit to help us improve our service.</h4>
-            <form method="POST">
+            <a id="link" href="https://statueofequality.org">Visit Our Website Here</a>
+            <form class="body-div" method="POST">
+                <br>
+                <h3 class="text-center">Please fill out this feedback form as you see fit to help us improve our service.</h3>
                 <br>
                 <div id="form-container">
                         
                     {% csrf_token %}
-                        <div>
+                        <div class="feilds">
                             <div class="mb-3">
                                 {{ form.name.label }}
                                 {{ form.name }}
@@ -30,7 +32,7 @@
                                 {{ form.city }}
                             </div>
                         </div>
-                        <div>
+                        <div class="feilds">
                             <div class="mb-3">
                                 {{ form.email.label }}
                                 {{ form.email }}
@@ -75,13 +77,13 @@
                     </tbody>
                 </table>
 
-                <div class="mb-3">
-                    <label for="improvement_areas" class="form-label">Which areas do you believe require improvement?</label>
-                    {{ form.improvement_areas }}
+                <div class="text">
+                        <label for="improvement_areas" class="form-label">Which areas do you believe require improvement?</label>
                 </div>
-                <div class="text-center">
+                <div class="text">
+                        {{ form.improvement_areas }}
+                </div>
                     <button type="submit" class="btn btn-primary">Submit Feedback</button>
-                </div>
 
             </form>
         </div>
