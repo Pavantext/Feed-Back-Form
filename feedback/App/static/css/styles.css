@@ -1,0 +1,32 @@
+#header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h4.text-center {
+    align-items: center;
+    margin: 0 auto;
+}
+
+#body-div {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: burlywood;
+    margin: 20px;
+    border: solid;
+}
+#img {
+    width: 100px;
+    height: 100px;
+}
+
+#form-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+h1.text-center.mb-4 {
+    margin: revert;
+}

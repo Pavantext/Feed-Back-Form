@@ -1,38 +1,52 @@
-<!-- <!DOCTYPE html>
+{% load static %}
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feedback Form</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-    <div class="container mt-4">
-        <h1 class="text-center mb-4">Statue of Equality Feedback Form</h1>
-        <p class="text-center">Please fill out this feedback form as you see fit to help us improve our service.</p>
-        
-        <form method="POST">
-            {% csrf_token %}
-            <div class="mb-3">
-                <label for="name" class="form-label">Name</label>
-                {{ form.name }}
-            </div>
-            <div class="mb-3">
-                <label for="city" class="form-label">City</label>
-                {{ form.city }}
-            </div>
-            <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                {{ form.email }}
-            </div>
-            <div class="mb-3">
-                <label for="mobile" class="form-label">Mobile</label>
-                {{ form.mobile }}
-            </div>
-
-            <h3 class="mt-4">Feedback Questions</h3>
-            <form mrthod="post">
-                {% csrf_token %}
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Feedback Form</title>
+        <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+    </head>
+    <body>
+        <div id="body-div">
+            <header id="header">
+                <img id="img" src="{% static 'images/Logo.png' %}" alt="Logo">
+                <h1 class="text-center mb-4">Statue of Equality Feedback Form</h1>
+            </header>
+            <br>
+            <h4 class="text-center">Please fill out this feedback form as you see fit to help us improve our service.</h4>
+            <form method="POST">
+                <br>
+                <div id="form-container">
+                        
+                    {% csrf_token %}
+                        <div>
+                            <div class="mb-3">
+                                {{ form.name.label }}
+                                {{ form.name }}
+                            </div>
+                            <div class="mb-3">
+                                {{ form.city.label }}
+                                {{ form.city }}
+                            </div>
+                        </div>
+                        <div>
+                            <div class="mb-3">
+                                {{ form.email.label }}
+                                {{ form.email }}
+                                {% if form.email.errors %}
+                                <div class="text-danger">
+                                {{ form.email.errors }}
+                                </div>
+                                {% endif %}
+                            </div>
+                            <div class="mb-3">
+                                {{ form.mobile.label }}
+                                {{ form.mobile }}
+                            </div>
+                        </div>
+                </div>
+                <h3 class="mt-4">Feedback Questions</h3>
                 <table class="table table-bordered text-center">
                     <thead>
                         <tr>
@@ -45,426 +59,31 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Ticket Counter team provided excellent support and assistance.</td>
-                            <td>
-                                <input type="radio" name="ticket_support" value="strongly_agree" 
-                                    {% if form.ticket_support.value == "strongly_agree" %}checked{% endif %}>
-                            </td>
-                            <td>
-                                <input type="radio" name="ticket_support" value="agree" 
-                                    {% if form.ticket_support.value == "agree" %}checked{% endif %}>
-                            </td>
-                            <td>
-                                <input type="radio" name="ticket_support" value="neutral" 
-                                    {% if form.ticket_support.value == "neutral" %}checked{% endif %}>
-                            </td>
-                            <td>
-                                <input type="radio" name="ticket_support" value="disagree" 
-                                    {% if form.ticket_support.value == "disagree" %}checked{% endif %}>
-                            </td>
-                            <td>
-                                <input type="radio" name="ticket_support" value="strongly_disagree" 
-                                    {% if form.ticket_support.value == "strongly_disagree" %}checked{% endif %}>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="6" class="text-danger">
-                                {{ form.ticket_support.errors }}
-                            </td>
-                        </tr>            
-                    
-                    
-                        <tr>
-                            <td>IT team provided excellent support and assistance.</td>
-                            <td>
-                                <input type="radio" name="it_support" value="strongly_agree" 
-                                    {% if form.it_support.value == "strongly_agree" %}checked{% endif %}>
-                            </td>
-                            <td>
-                                <input type="radio" name="it_support" value="agree" 
-                                    {% if form.it_support.value == "agree" %}checked{% endif %}>
-                            </td>
-                            <td>
-                                <input type="radio" name="it_support" value="neutral" 
-                                    {% if form.it_support.value == "neutral" %}checked{% endif %}>
-                            </td>
-                            <td>
-                                <input type="radio" name="it_support" value="disagree" 
-                                    {% if form.it_support.value == "disagree" %}checked{% endif %}>
-                            </td>
-                            <td>
-                                <input type="radio" name="it_support" value="strongly_disagree" 
-                                    {% if form.it_support.value == "strongly_disagree" %}checked{% endif %}>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="6" class="text-danger">
-                                {{ form.it_support.errors }}
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>The security team provided excellence support and assistance</td>
-                            <td>
-                                <input type="radio" name="security" value="strongly_agree"
-                                    {% if form.security.value == "strongly_agree" %}checked{% endif %}>
-                            </td>
-                            <td>
-                                <input type="radio" name="security" value="agree"
-                                    {% if form.security.value == "agree" %}checked{% endif %}>
-                            </td>
-                            <td>
-                                <input type="radio" name="security" value="neutral"
-                                    {% if form.security.value == "neutral" %}checked{% endif %}>
-                            </td>
-                            <td>
-                                <input type="radio" name="security" value="disagree"
-                                    {% if form.security.value == "disagree" %}checked{% endif %}>
-                            </td>
-                            <td>
-                                <input type="radio" name="security" value="strongly_disagree"
-                                    {% if form.security.value == "strongly_disagree" %}checked{% endif %}>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td colspan="6" class="text-danger">
-                                {{ form.security.errors }}
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>The housekeeping team maintained the premises in an exceptionally clean condition</td>
-                            <td>
-                                <input type="radio" name="housekeeping" value="strongly_agree"
-                                    {% if form.housekeeping.value == "strongly_agree" %}checked{% endif %}>
-                            </td>
-                            <td>
-                                <input type="radio" name="housekeeping" value="agree"
-                                    {% if form.housekeeping.value == "agree" %}checked{% endif %}>
-                            </td>
-                            <td>
-                                <input type="radio" name="housekeeping" value="neutral"
-                                    {% if form.housekeeping.value == "neutral" %}checked{% endif %}>
-                            </td>
-                            <td>
-                                <input type="radio" name="housekeeping" value="disagree"
-                                    {% if form.housekeeping.value == "disagree" %}checked{% endif %}>
-                            </td>
-                            <td>
-                                <input type="radio" name="housekeeping" value="strongly_disagree"
-                                    {% if form.housekeeping.value == "strongly_disagree" %}checked{% endif %}>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td colspan="6" class="text-danger">
-                                {{ form.housekeeping.errors }}
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>The facilitators were welcoming and provided outstanding guidance, leaving us completely satisfied.</td>
-                            <td>
-                                <input type="radio" name="facilitators" value="strongly_agree"
-                                    {% if form.facilitators.value == "strongly_agree" %}checked{% endif %}>
-                            </td>
-                            <td>
-                                <input type="radio" name="facilitators" value="agree"
-                                    {% if form.facilitators.value == "agree" %}checked{% endif %}>
-                            </td>
-                            <td>
-                                <input type="radio" name="facilitators" value="neutral"
-                                    {% if form.facilitators.value == "neutral" %}checked{% endif %}>
-                            </td>
-                            <td>
-                                <input type="radio" name="facilitators" value="disagree"
-                                    {% if form.facilitators.value == "disagree" %}checked{% endif %}>
-                            </td>
-                            <td>
-                                <input type="radio" name="facilitators" value="strongly_disagree"
-                                    {% if form.facilitators.value == "strongly_disagree" %}checked{% endif %}>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td colspan="6" class="text-danger">
-                                {{ form.facilitators.errors }}
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>The Archakas guided us expertly, leading us in chanting mantras at the 108 Divyadesams and Swarna Ramanuja.</td>
-                            <td>
-                                <input type="radio" name="archakas" value="strongly_agree"
-                                    {% if form.archakas.value == "strongly_agree" %}checked{% endif %}>
-                            </td>
-                            <td>
-                                <input type="radio" name="archakas" value="agree"
-                                    {% if form.archakas.value == "agree" %}checked{% endif %}>
-                            </td>
-                            <td>
-                                <input type="radio" name="archakas" value="neutral"
-                                    {% if form.archakas.value == "neutral" %}checked{% endif %}>
-                            </td>
-                            <td>
-                                <input type="radio" name="archakas" value="disagree"
-                                    {% if form.archakas.value == "disagree" %}checked{% endif %}>
-                            </td>
-                            <td>
-                                <input type="radio" name="archakas" value="strongly_disagree"
-                                    {% if form.archakas.value == "strongly_disagree" %}checked{% endif %}>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td colspan="6" class="text-danger">
-                                {{ form.archakas.errors }}
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>I felt a deep sense of devotion at the 108 Divyadesams and a truly fulfilling experience.</td>
-                            <td>
-                                <input type="radio" name="devotion" value="strongly_agree"
-                                    {% if form.devotion.value == "strongly_agree" %}checked{% endif %}>
-                            </td>
-                            <td>
-                                <input type="radio" name="devotion" value="agree"
-                                    {% if form.devotion.value == "agree" %}checked{% endif %}>
-                            </td>
-                            <td>
-                                <input type="radio" name="devotion" value="neutral"
-                                    {% if form.devotion.value == "neutral" %}checked{% endif %}>
-                            </td>
-                            <td>
-                                <input type="radio" name="devotion" value="disagree"
-                                    {% if form.devotion.value == "disagree" %}checked{% endif %}>
-                            </td>
-                            <td>
-                                <input type="radio" name="devotion" value="strongly_disagree"
-                                    {% if form.devotion.value == "strongly_disagree" %}checked{% endif %}>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td colspan="6" class="text-danger">
-                                {{ form.devotion.errors }}
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>I thoroughly enjoyed watching the 'Samatha Neerajanam (Harathi)' - it was truly spectacular.</td>
-                            <td>
-                                <input type="radio" name="harathi" value="strongly_agree"
-                                    {% if form.harathi.value == "strongly_agree" %}checked{% endif %}>
-                            </td>
-                            <td>
-                                <input type="radio" name="harathi" value="agree"
-                                    {% if form.harathi.value == "agree" %}checked{% endif %}>
-                            </td>
-                            <td>
-                                <input type="radio" name="harathi" value="neutral"
-                                    {% if form.harathi.value == "neutral" %}checked{% endif %}>
-                            </td>
-                            <td>
-                                <input type="radio" name="harathi" value="disagree"
-                                    {% if form.harathi.value == "disagree" %}checked{% endif %}>
-                            </td>
-                            <td>
-                                <input type="radio" name="harathi" value="strongly_disagree"
-                                    {% if form.harathi.value == "strongly_disagree" %}checked{% endif %}>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td colspan="6" class="text-danger">
-                                {{ form.harathi.errors }}
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>The fountain and laser show were amazing, atruly breathtaking experiencefor my eyes.</td>
-                            <td>
-                                <input type="radio" name="fountain" value="strongly_agree"
-                                    {% if form.fountain.value == "strongly_agree" %}checked{% endif %}>
-                            </td>
-                            <td>
-                                <input type="radio" name="fountain" value="agree"
-                                    {% if form.fountain.value == "agree" %}checked{% endif %}>
-                            </td>
-                            <td>
-                                <input type="radio" name="fountain" value="neutral"
-                                    {% if form.fountain.value == "neutral" %}checked{% endif %}>
-                            </td>
-                            <td>
-                                <input type="radio" name="fountain" value="disagree"
-                                    {% if form.fountain.value == "disagree" %}checked{% endif %}>
-                            </td>
-                            <td>
-                                <input type="radio" name="fountain" value="strongly_disagree"
-                                    {% if form.fountain.value == "strongly_disagree" %}checked{% endif %}>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td colspan="6" class="text-danger">
-                                {{ form.fountain.errors }}
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>The prasadam is not only delicious and flavorful but also hygienic for my eyes.</td>
-                            <td>
-                                <input type="radio" name="prasadam" value="strongly_agree"
-                                    {% if form.prasadam.value == "strongly_agree" %}checked{% endif %}>
-                            </td>
-                            <td>
-                                <input type="radio" name="prasadam" value="agree"
-                                    {% if form.prasadam.value == "agree" %}checked{% endif %}>
-                            </td>
-                            <td>
-                                <input type="radio" name="prasadam" value="neutral"
-                                    {% if form.prasadam.value == "neutral" %}checked{% endif %}>
-                            </td>
-                            <td>
-                                <input type="radio" name="prasadam" value="disagree"
-                                    {% if form.prasadam.value == "disagree" %}checked{% endif %}>
-                            </td>
-                            <td>
-                                <input type="radio" name="prasadam" value="strongly_disagree"
-                                    {% if form.prasadam.value == "strongly_disagree" %}checked{% endif %}>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td colspan="6" class="text-danger">
-                                {{ form.prasadam.errors }}
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>I would love to visit the Statue of Equality repeatedly.</td>
-                            <td>
-                                <input type="radio" name="visit" value="strongly_agree"
-                                    {% if form.visit.value == "strongly_agree" %}checked{% endif %}>
-                            </td>
-                            <td>
-                                <input type="radio" name="visit" value="agree"
-                                    {% if form.visit.value == "agree" %}checked{% endif %}>
-                            </td>
-                            <td>
-                                <input type="radio" name="visit" value="neutral"
-                                    {% if form.visit.value == "neutral" %}checked{% endif %}>
-                            </td>
-                            <td>
-                                <input type="radio" name="visit" value="disagree"
-                                    {% if form.visit.value == "disagree" %}checked{% endif %}>
-                            </td>
-                            <td>
-                                <input type="radio" name="visit" value="strongly_disagree"
-                                    {% if form.visit.value == "strongly_disagree" %}checked{% endif %}>
-                            </td>
-                        </tr>
-                
-                        <tr>
-                            <td colspan="6" class="text-danger">
-                                {{ form.visit.errors }}
-                            </td>
-                        </tr>
-
+                        {% for question, field in feedback_questions.items %}
+                            <tr>
+                                <td>{{ question }}</td>
+                                <td><input type="radio" name="{{ field.name }}" value="strongly_agree" {% if field.value == "strongly_agree" %}checked{% endif %}></td>
+                                <td><input type="radio" name="{{ field.name }}" value="agree" {% if field.value == "agree" %}checked{% endif %}></td>
+                                <td><input type="radio" name="{{ field.name }}" value="neutral" {% if field.value == "neutral" %}checked{% endif %}></td>
+                                <td><input type="radio" name="{{ field.name }}" value="disagree" {% if field.value == "disagree" %}checked{% endif %}></td>
+                                <td><input type="radio" name="{{ field.name }}" value="strongly_disagree" {% if field.value == "strongly_disagree" %}checked{% endif %}></td>
+                            </tr>
+                            <tr>
+                                <td colspan="6" class="text-danger">{{ field.errors }}</td>
+                            </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
-            
+
                 <div class="mb-3">
                     <label for="improvement_areas" class="form-label">Which areas do you believe require improvement?</label>
                     {{ form.improvement_areas }}
                 </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Submit Feedback</button>
+                </div>
 
-                <button type="submit" class="btn btn-primary">Submit Feedback</button>
             </form>
-        </form>
-    </div>
-</body>
-</html> -->
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-        <h1 class="text-center mb-4">Statue of Equality Feedback Form</h1>
-    <p class="text-center">Please fill out this feedback form as you see fit to help us improve our service.</p>
-
-    <form method="POST">
-        {% csrf_token %}
-        <div class="mb-3">
-            {{ form.name.label }}
-            <!-- <label for="name" class="form-label">Name</label> -->
-            {{ form.name }}
         </div>
-        <div class="mb-3">
-            {{ form.city.label }}
-            <!-- <label for="city" class="form-label">City</label> -->
-            {{ form.city }}
-        </div>
-        <div class="mb-3">
-            {{ form.email.label }}
-            <!-- <label for="email" class="form-label">Email</label> -->
-            {{ form.email }}
-            {% if form.email.errors %}
-            <div class="text-danger">
-              {{ form.email.errors }}
-            </div>
-            {% endif %}
-
-        </div>
-        <div class="mb-3">
-            {{ form.mobile.label }}
-            <!-- <label for="mobile" class="form-label">Mobile</label> -->
-            {{ form.mobile }}
-        </div>
-
-        <h3 class="mt-4">Feedback Questions</h3>
-        <table class="table table-bordered text-center">
-            <thead>
-                <tr>
-                    <th>Question</th>
-                    <th>Strongly Agree</th>
-                    <th>Agree</th>
-                    <th>Neutral</th>
-                    <th>Disagree</th>
-                    <th>Strongly Disagree</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for question, field in feedback_questions.items %}
-                    <tr>
-                        <td>{{ question }}</td>
-                        <td><input type="radio" name="{{ field.name }}" value="strongly_agree" {% if field.value == "strongly_agree" %}checked{% endif %}></td>
-                        <td><input type="radio" name="{{ field.name }}" value="agree" {% if field.value == "agree" %}checked{% endif %}></td>
-                        <td><input type="radio" name="{{ field.name }}" value="neutral" {% if field.value == "neutral" %}checked{% endif %}></td>
-                        <td><input type="radio" name="{{ field.name }}" value="disagree" {% if field.value == "disagree" %}checked{% endif %}></td>
-                        <td><input type="radio" name="{{ field.name }}" value="strongly_disagree" {% if field.value == "strongly_disagree" %}checked{% endif %}></td>
-                    </tr>
-                    <tr>
-                        <td colspan="6" class="text-danger">{{ field.errors }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-
-        <div class="mb-3">
-            <label for="improvement_areas" class="form-label">Which areas do you believe require improvement?</label>
-            {{ form.improvement_areas }}
-        </div>
-
-        <button type="submit" class="btn btn-primary">Submit Feedback</button>
-    </form>
-</body>
+    </body>
 </html>
