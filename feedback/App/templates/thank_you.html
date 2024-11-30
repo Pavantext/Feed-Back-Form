@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="body-div">
-        <h1 class="text-center mb-4">Thank You!</h1>
+        <h1 class="text-center mb-4">Thank You!, {{ user_name }}</h1>
         <h1 class="text-center mb-4">Your feedback has been submitted successfully.</h1>
         <div id="social-media">
             <h3>You can Follow us on Social Media</h3>
@@ -23,6 +23,7 @@
                 <img src="{% static 'images/insta.png' %}" alt="Instagram">
             </a>
         </div>
+        <br>
         <div class="text-center">
             <a href="\">
                 <button type="submit" class="btn">Give Another Feedback</button>

@@ -25,6 +25,7 @@
                 <div id="form-container">
                         
                     {% csrf_token %}
+                    <input type="hidden" name="form_token" value="{{ form_token }}">
                         <div class="feilds">
                             <div class="mb-3">
                                 {{ form.name.label }}
