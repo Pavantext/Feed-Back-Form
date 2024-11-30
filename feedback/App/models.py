@@ -21,6 +21,8 @@ class Feedback(models.Model):
     
 
     improvement_areas = models.TextField(blank=True, null=True)
+    rating = models.TextField(blank=True, null=True)
+    quality = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return self.name

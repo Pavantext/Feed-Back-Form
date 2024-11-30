@@ -3,14 +3,13 @@ from .models import Feedback
 
 
 class FeedbackForm(forms.ModelForm):
+    name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'placeholder': 'Enter your name'}), required=True)
+    city = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'placeholder': 'Enter city name'}), required=True)
+    email = forms.EmailField(widget=forms.TextInput(attrs={'placeholder': 'Enter Email address'}), required=True)
+    mobile = forms.CharField(widget=forms.NumberInput(attrs={'placeholder': 'Enter mobile number'}), max_length=15, required=True)
     class Meta:
         model = Feedback
         fields = '__all__'
-        name = forms.CharField(max_length=100,  required=True)
-        city = forms.CharField(max_length=100, required=True)
-        email = forms.EmailField(required=True)
-        mobile = forms.CharField(max_length=15, required=True)
-
         CHOICES = [
             ('strongly_agree', 'Strongly Agree'),
             ('agree', 'Agree'),
@@ -33,3 +32,5 @@ class FeedbackForm(forms.ModelForm):
 
         improvement_areas = forms.CharField(widget=forms.Textarea, required=False)
 
+        rating = forms.CharField(widget=forms.Textarea, required=False)
+        quality = forms.CharField(widget=forms.Textarea, required=False)
