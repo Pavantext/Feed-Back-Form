@@ -52,37 +52,51 @@
                             </div>
                         </div>
                 </div>
+                <br>
                 <h3 class="mt-4">Feedback Questions</h3>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Sl no</th>
-                            <th>Question</th>
-                            <th>Strongly Agree</th>
-                            <th>Agree</th>
-                            <th>Neutral</th>
-                            <th>Disagree</th>
-                            <th>Strongly Disagree</th>
-                        </tr>
-                    </thead>
-                    <br>
-                    <tbody>
-                        {% for question, field in feedback_questions.items %}
+                <div class="table-container">
+                    <table class="table">
+                        <thead>
                             <tr>
-                                <td>{{ forloop.counter }}.</td>
-                                <td>{{ question }}</td>
-                                <td><input type="radio" name="{{ field.html_name }}" value="strongly_agree" {% if field.value == "strongly_agree" %}checked{% endif %}></td>
-                                <td><input type="radio" name="{{ field.html_name }}" value="agree" {% if field.value == "agree" %}checked{% endif %}></td>
-                                <td><input type="radio" name="{{ field.html_name }}" value="neutral" {% if field.value == "neutral" %}checked{% endif %}></td>
-                                <td><input type="radio" name="{{ field.html_name }}" value="disagree" {% if field.value == "disagree" %}checked{% endif %}></td>
-                                <td><input type="radio" name="{{ field.html_name }}" value="strongly_disagree" {% if field.value == "strongly_disagree" %}checked{% endif %}></td>
+                                <th>Sl no</th>
+                                <th>Question</th>
+                                <th>Strongly Agree</th>
+                                <th>Agree</th>
+                                <th>Neutral</th>
+                                <th>Disagree</th>
+                                <th>Strongly Disagree</th>
                             </tr>
-                            <tr>
-                                <td colspan="6" class="text-danger">{{ field.errors }}</td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+                        </thead>
+                        <br>
+                        {% if form.non_field_errors %}
+                        <div class="text-danger">
+                            <ul>
+                                {% for error in form.non_field_errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+                    
+
+                        <tbody>
+                            {% for question, field in feedback_questions.items %}
+                                <tr>
+                                    <td>{{ forloop.counter }}.</td>
+                                    <td>{{ question }}</td>
+                                    <td><input type="radio" name="{{ field.name }}" value="strongly_agree" {% if field.value == "strongly_agree" %}checked{% endif %}></td>
+                                    <td><input type="radio" name="{{ field.name }}" value="agree" {% if field.value == "agree" %}checked{% endif %}></td>
+                                    <td><input type="radio" name="{{ field.name }}" value="neutral" {% if field.value == "neutral" %}checked{% endif %}></td>
+                                    <td><input type="radio" name="{{ field.name }}" value="disagree" {% if field.value == "disagree" %}checked{% endif %}></td>
+                                    <td><input type="radio" name="{{ field.name }}" value="strongly_disagree" {% if field.value == "strongly_disagree" %}checked{% endif %}></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="6" class="text-danger">{{ field.errors }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
                 <br>
                 <div class="text">
                         <h3>Which areas do you believe require improvement?</h3>
