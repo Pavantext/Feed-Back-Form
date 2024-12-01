@@ -4,7 +4,7 @@ class Feedback(models.Model):
     name = models.CharField(max_length=100)
     city = models.CharField(max_length=100)
     email = models.EmailField()
-    mobile = models.CharField(max_length=15)
+    mobile = models.CharField(max_length=12)
     
 
     ticket_support = models.CharField(max_length=20)
@@ -21,7 +21,7 @@ class Feedback(models.Model):
     
 
     improvement_areas = models.TextField(blank=True, null=True)
-    rating = models.TextField(blank=True, null=True)
+    rating = models.CharField(max_length=2, blank=True, null=True)
     quality = models.TextField(blank=True, null=True)
 
     def __str__(self):

@@ -71,11 +71,11 @@
                             <tr>
                                 <td>{{ forloop.counter }}.</td>
                                 <td>{{ question }}</td>
-                                <td><input type="radio" name="{{ field.name }}" value="strongly_agree" {% if field.value == "strongly_agree" %}checked{% endif %}></td>
-                                <td><input type="radio" name="{{ field.name }}" value="agree" {% if field.value == "agree" %}checked{% endif %}></td>
-                                <td><input type="radio" name="{{ field.name }}" value="neutral" {% if field.value == "neutral" %}checked{% endif %}></td>
-                                <td><input type="radio" name="{{ field.name }}" value="disagree" {% if field.value == "disagree" %}checked{% endif %}></td>
-                                <td><input type="radio" name="{{ field.name }}" value="strongly_disagree" {% if field.value == "strongly_disagree" %}checked{% endif %}></td>
+                                <td><input type="radio" name="{{ field.html_name }}" value="strongly_agree" {% if field.value == "strongly_agree" %}checked{% endif %}></td>
+                                <td><input type="radio" name="{{ field.html_name }}" value="agree" {% if field.value == "agree" %}checked{% endif %}></td>
+                                <td><input type="radio" name="{{ field.html_name }}" value="neutral" {% if field.value == "neutral" %}checked{% endif %}></td>
+                                <td><input type="radio" name="{{ field.html_name }}" value="disagree" {% if field.value == "disagree" %}checked{% endif %}></td>
+                                <td><input type="radio" name="{{ field.html_name }}" value="strongly_disagree" {% if field.value == "strongly_disagree" %}checked{% endif %}></td>
                             </tr>
                             <tr>
                                 <td colspan="6" class="text-danger">{{ field.errors }}</td>
@@ -87,21 +87,30 @@
                 <div class="text">
                         <h3>Which areas do you believe require improvement?</h3>
                 </div>
+                <br>
                 <div class="text">
                         {{ form.improvement_areas }}
                 </div>
                 <div class="text">
                     <h3>Do You have any suggestions to improve prasadam Quality</h3>
                 </div>
+                <br>
                 <div class="text">
                     {{ form.quality }}
                 </div>
                 <div class="text">
                     <h3>How satisfied are you with the overall experience?(Rate out of 10)</h3>
                 </div>
+                <br>
                 <div class="text">
                     {{ form.rating }}
                 </div>
+                {% if form.rating.errors %}
+                    <div class="text-danger">
+                        {{ form.rating.errors }}
+                    </div>
+                    <br>
+                {% endif %}
                     <button type="submit" class="btn">Submit Feedback</button>
                     <br>
             </form>
