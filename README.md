@@ -121,8 +121,15 @@ Fork the [repo](https://github.com/Pavantext/Feed-Back-Form.git)
 
 # Screenshots
 ### Feedback Form:
-
+![Screenshot (22)](https://github.com/user-attachments/assets/801f4340-b750-4c73-8512-358aa0edbb67)
+<br<
+![Screenshot (23)](https://github.com/user-attachments/assets/c9900e19-90fd-487a-9177-d210e4f1d119)
+<br>
+![Screenshot (24)](https://github.com/user-attachments/assets/49a14aaa-8f55-4660-a297-4ef9ad0cce5a)
+<br>
 ### Thank You Page:
+![Screenshot (21)](https://github.com/user-attachments/assets/83e490d9-c4c4-492e-96b2-d1d64a270836)
+
  #### Usage
 1. Fill out the feedback form, including ratings for various categories and suggestions.
 2. Submit the form to save the feedback.
