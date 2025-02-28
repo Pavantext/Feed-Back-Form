@@ -140,3 +140,6 @@ Fork the [repo](https://github.com/Pavantext/Feed-Back-Form.git)
 - Export feedback data to CSV or Excel.
 - Implement analytics dashboards to visualize feedback trends.
 
+### Thank You Page:
+![Screenshot (21)](https://github.com/user-attachments/assets/83e490d9-c4c4-492e-96b2-d1d64a270836)
+
